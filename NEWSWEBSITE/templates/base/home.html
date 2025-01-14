@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Reader App</title>
+    {% load static %}
+    <script src="{% static 'homepage/js/script.js' %}" defer> </script>
+    <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>News Reader</h1>
+        <nav>
+            <ul>
+                <li onclick="searchNews('World')">World News</li>
+                <li onclick="searchNews('Technology')">Technology</li>
+                <li onclick="searchNews('Sports')">Sports</li>
+                <li onclick="searchNews('Entertainment')">Entertainment</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="searchBarOuter">
+        <input type="text" id="searchBar" placeholder="Search All Available News..................">
+    </div>
+
+    <main>
+        <section id="featured-articles">
+            <h2>Featured Articles</h2>
+            {% for j in articles %}
+            <article>
+                <img class="imgArticle" src="{{j.urlToImage}}" alt="Article Image">
+                <div>
+                    <h3>{{j.title}}</h3>
+                    <p>{{j.description}}</p>
+                </div>
+                <button type="text" onclick="addSummary('{{j.title}}','{{j.url}}')">ADD TO SUMMARY</button>
+            </article>
+            {% endfor %}
+        </section>
+
+
+        <div id="summuryHolder">
+            <h2 onclick="createSummary()">Create Summary </h2>
+            <div class="newsBlock">
+                <div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
+
+
